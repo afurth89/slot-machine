@@ -25,10 +25,10 @@ body {
 }
 
 
-/* Wraps a single column*/
+/* Wraps a single column */
 .column-box { 
+  position: relative; 
   overflow: hidden; 
-  position: absolute; 
   top: 20px; 
   left: 20px; 
   width: 200px; 
@@ -36,12 +36,15 @@ body {
   border: 1px solid black;
 }
 
-.col {
+.col-item {
+  position: absolute;
   text-align: center;
   height: 100%;
+  width: 100%;
+  top: 200px;
 }
 
-.col h3 {
+.col-item h3 {
   font-size: 4em;
   top: auto;
   bottom: auto;
