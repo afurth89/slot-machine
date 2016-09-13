@@ -1,0 +1,50 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+}
+
+body { 
+  font: 14px Georgia, serif; 
+}
+
+/* Wraps entire slot machine, button included*/
+#page-wrapper { 
+  width: 700px; 
+  margin: 50px auto; 
+}
+
+/* Wraps the three slot machine columns */
+.box-wrapper { 
+  -moz-box-shadow: 0 0 20px black; 
+  -webkit-box-shadow: 0 0 20px black; 
+  padding: 20px; background: white; 
+  border: 1px solid #ccc; 
+  margin: -1px 0 0 0; 
+  height: 210px; 
+  position: relative; 
+}
+
+
+/* Wraps a single column*/
+.column-box { 
+  overflow: hidden; 
+  position: absolute; 
+  top: 20px; 
+  left: 20px; 
+  width: 200px; 
+  height: 200px;
+  border: 1px solid black;
+}
+
+.col {
+  text-align: center;
+  height: 100%;
+}
+
+.col h3 {
+  font-size: 4em;
+  top: auto;
+  bottom: auto;
+}
+
+.current { z-index: 100; }
