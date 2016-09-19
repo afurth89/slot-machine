@@ -1,4 +1,7 @@
-// 1. spinItem function (consider name )
+// 1. spinItem function (consider name)
+// 2. Set names of item divs in each row
+// 3. Abstract function for initiateSpin for each column
+
 
 
 // Function updates the class and animates change to
@@ -32,6 +35,25 @@ function spinItem(el) {
   }
 }
 
+function initiateSpin(item1, item2, item3, spinTotal) {
+  var counter = 0;
+  // console.log("Number of spins is ", spinTotal)
+  var refreshId = setInterval(() => {
+    if (counter === spinTotal) {
+      clearInterval(refreshId)
+      // console.log("INTERVAL STOPPED")
+    }
+    spinItem($item1);
+    spinItem($item2);
+    spinItem($item3);
+    counter++;
+    // console.log("counter is ", counter)
+
+  // At the moment the interval time needs to be larger 
+  // than the animation speed or the animation breaks
+  }, 550)
+}
+
 $(function() {
   var speedOne = 1000,
       $startBtn = $("#start-btn");
@@ -53,21 +75,6 @@ $(function() {
   $startBtn.on("click", function() {
     // Determine number of spins and set count
     var spinTotal = Math.floor(Math.random() * 10);
-    var counter = 0;
-    // console.log("Number of spins is ", spinTotal)
-    var refreshId = setInterval(() => {
-      if (counter === spinTotal) {
-        clearInterval(refreshId)
-        // console.log("INTERVAL STOPPED")
-      }
-      spinItem($item1);
-      spinItem($item2);
-      spinItem($item3);
-      counter++;
-      // console.log("counter is ", counter)
-
-    // At the moment the interval time needs to be larger 
-    // than the animation speed or the animation breaks
-    }, 550)
+    initiateSpin($item1, $item2, $item3, spinTotal);
   })
 });
