@@ -11,10 +11,24 @@ $( document ).ready(function() {
   // However since the first and last item are identical
   // the 'jump' is imperceptible to the user
 
-  var itemList = $('#col-one>ul:first')
-  var firstItem = itemList.find('li:first')
-  firstItem.clone().appendTo(itemList)
+  // TODO: Create function to delegate cloning of
+  // first item in list
 
+  // Clone Col 1
+  var itemList1 = $('#col-one>ul:first')
+  var firstItem1 = itemList1.find('li:first')
+  firstItem1.clone().appendTo(itemList1)
+
+
+  // Clone Col 2
+  var itemList2 = $('#col-two>ul:first')
+  var firstItem2 = itemList2.find('li:first')
+  firstItem2.clone().appendTo(itemList2)
+
+  // Clone Col 3
+  var itemList3 = $('#col-three>ul:first')
+  var firstItem3 = itemList3.find('li:first')
+  firstItem3.clone().appendTo(itemList3)
 
   
   // A vertical scroll through the 
@@ -58,11 +72,23 @@ $( document ).ready(function() {
     });
   }
 
+  // TODO: Delegate setting the css and calling 
+  // 'spin' function across columns
   $('#start-btn').click(function () {
     $('#col-one').css({
         top: 0
     }) 
     spin($('#col-one'), 1)
+
+    $('#col-two').css({
+        top: 0
+    }) 
+    spin($('#col-two'), 1)
+
+    $('#col-three').css({
+        top: 0
+    }) 
+    spin($('#col-three'), 1)
   });
 
 });
