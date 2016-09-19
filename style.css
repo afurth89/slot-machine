@@ -13,12 +13,19 @@ body {
   margin: 50px auto; 
 }
 
+#slot-machine-wrapper {
+  position: relative;
+  width: 600px;
+  height: 200px;
+}
+
 .col-viewbox {
-    overflow: hidden;
-    width: 300px;
-    height: 200px;
-    border: solid 1px #000;
-    position: relative;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  width: 30%;
+  height: 200px;
+  border: solid 1px #000;
 }
 .col-viewbox .col-wrapper {
     position: relative;
@@ -30,7 +37,6 @@ body {
 }
 .col-viewbox li {
     display: block;
-    width: 300px;
     height: 200px;
     text-align: center;
     font-size: 170px;
