@@ -6,7 +6,7 @@
 
 // Function updates the class and animates change to
 // CSS position for items
-function spinItem(el) {
+function spinItem(el, speed) {
   if (el.hasClass("shown")) {
   // If currently class is "shown", 
     // 1. change class to "below" 
@@ -15,7 +15,7 @@ function spinItem(el) {
     el.removeClass("shown")
     el.animate({
       "top": 200
-    }, 500)
+    }, speed)
     el.addClass("last")
   } else if (el.hasClass("last")) {
   // If currently class is "below", 
@@ -30,7 +30,7 @@ function spinItem(el) {
     el.removeClass("next")
     el.animate({
       "top": 0
-    }, 500)
+    }, speed)
     el.addClass("shown")
   }
 }
@@ -41,21 +41,25 @@ function initiateSpin(item1, item2, item3) {
   // Determine number of spins and set count
   var spinTotal = Math.floor(Math.random() * 10);
   var counter = 0;
+  
+  // Determine speed of spin
+  var speed = Math.floor(Math.random()*1000) + 500;
+
   // console.log("Number of spins is ", spinTotal)
   var refreshId = setInterval(() => {
     if (counter === spinTotal) {
       clearInterval(refreshId)
       // console.log("INTERVAL STOPPED")
     }
-    spinItem(item1);
-    spinItem(item2);
-    spinItem(item3);
+    spinItem(item1, speed);
+    spinItem(item2, speed);
+    spinItem(item3, speed);
     counter++;
     // console.log("counter is ", counter)
 
   // At the moment the interval time needs to be larger 
   // than the animation speed or the animation breaks
-  }, 550)
+  }, 0)
 }
 
 // This function will automate setting the class for each
