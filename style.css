@@ -14,45 +14,39 @@ body {
 }
 
 /* Wraps the three slot machine columns */
-.box-wrapper { 
-  -moz-box-shadow: 0 0 20px black; 
-  -webkit-box-shadow: 0 0 20px black; 
+#viewbox-wrapper { 
+/*  -moz-box-shadow: 0 0 20px black; 
+  -webkit-box-shadow: 0 0 20px black;*/ 
+  position: relative; 
+  overflow: hidden; 
   padding: 20px; background: white; 
   border: 1px solid #ccc; 
   margin: -1px 0 0 0; 
-  height: 210px; 
+  height: 220px; 
   width: 650px;
-  position: relative; 
 }
 
-
 /* Wraps a single column */
-.column-box { 
+#viewbox-wrapper .column-wrapper { 
   position: relative;
   float: left; 
   width: 30%; 
-  overflow: hidden; 
   top: 20px; 
   left: 20px; 
   height: 200px;
   border: 1px solid black;
 }
 
+.column-wrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .col-item {
-  position: absolute;
+  display: block;
+  height: 200px;
+  width: 200px;
   text-align: center;
-  height: 100%;
-  width: 100%;
-  /*top: 200px;*/
-}
-
-.col-item h3 {
   font-size: 4em;
-  top: auto;
-  bottom: auto;
-}
-
-.current { 
-  z-index: 100; 
-  /*top: 0px;*/
 }
