@@ -7,13 +7,24 @@
 // 4. Repeat 1-3 with three items
 
 function updateClass(el) {
-  console.log(el)
+  // If currently class is "shown", 
+    // 1. change class to "below" 
+    // 2. and change top to 200px;
   if (el.hasClass("shown")) {
-    console.log("SHOWN --> BELOW")
-    el.removeClass("shown").css("top", 200).addClass("below")
+    el.removeClass("shown")
+    el.animate({
+      "top": 200
+    }, 1000)
+    el.addClass("below")
+  // If currently class is "below", 
+    // 1. change class to "below" 
+    // 2. and change top to -200px;
   } else if (el.hasClass("below")) {
-    console.log("BELOW --> SHOWN")
-    el.removeClass("below").css("top", 0).addClass("shown")
+    el.removeClass("below").css("top", -200)
+    el.animate({
+      "top": 0
+    }, 1000)
+    el.addClass("shown")
   }
 }
 
