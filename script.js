@@ -75,20 +75,24 @@ $( document ).ready(function() {
   // TODO: Delegate setting the css and calling 
   // 'spin' function across columns
   $('#start-btn').click(function () {
+    // Set random spin values between 1 and 5 for colOne
+      // We'll increment that val for cols Two and Three
+      // to mirror how a normal slot machine finishes
+    var colOneSpins = Math.floor(Math.random() * 6)  
     $('#col-one').css({
         top: 0
     }) 
-    spin($('#col-one'), 1)
+    spin($('#col-one'), colOneSpins)
 
     $('#col-two').css({
         top: 0
     }) 
-    spin($('#col-two'), 1)
+    spin($('#col-two'), colOneSpins+1)
 
     $('#col-three').css({
         top: 0
     }) 
-    spin($('#col-three'), 1)
+    spin($('#col-three'), colOneSpins+2)
   });
 
 });
