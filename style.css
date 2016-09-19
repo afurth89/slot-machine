@@ -41,7 +41,7 @@ body {
   text-align: center;
   height: 100%;
   width: 100%;
-  top: 200px;
+  /*top: 200px;*/
 }
 
 .col-item h3 {
@@ -50,4 +50,7 @@ body {
   bottom: auto;
 }
 
-.current { z-index: 100; }
+.current { 
+  z-index: 100; 
+  /*top: 0px;*/
+}
