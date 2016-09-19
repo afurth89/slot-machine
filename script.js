@@ -23,8 +23,8 @@ $( document ).ready(function() {
   // Will go through given number of 'spins'
   // and on final spin will select a winning
   // element and end 'spin' animation there
-  function spin(count) {
-    $('#col-one')
+  function spin(column, count) {
+    column
     .stop()  // Reset, ensure previous animation stopped
     // 'spin' animation, scroll item list top to bottom
     .animate({
@@ -53,7 +53,7 @@ $( document ).ready(function() {
           $(this).css({
               top: 0
           })
-          spin(count - 1)
+          spin(column, count - 1)
       };
     });
   }
@@ -62,7 +62,7 @@ $( document ).ready(function() {
     $('#col-one').css({
         top: 0
     }) 
-    spin(1)
+    spin($('#col-one'), 1)
   });
 
 });
