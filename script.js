@@ -35,6 +35,8 @@ function spinItem(el) {
   }
 }
 
+// Initiates the spinning for each column with
+// a random number of spins
 function initiateSpin(item1, item2, item3) {
   // Determine number of spins and set count
   var spinTotal = Math.floor(Math.random() * 10);
@@ -45,9 +47,9 @@ function initiateSpin(item1, item2, item3) {
       clearInterval(refreshId)
       // console.log("INTERVAL STOPPED")
     }
-    spinItem($item1);
-    spinItem($item2);
-    spinItem($item3);
+    spinItem(item1);
+    spinItem(item2);
+    spinItem(item3);
     counter++;
     // console.log("counter is ", counter)
 
@@ -56,25 +58,40 @@ function initiateSpin(item1, item2, item3) {
   }, 550)
 }
 
+// This function will automate setting the class for each
+// column
+function setClass(itm1, itm2, itm3) {
+  itm1.addClass("shown").css("top", 0);
+  itm2.addClass("next").css("top", -200);
+  itm3.addClass("last").css("top", -200);  
+}
+
 $(function() {
   var speedOne = 1000,
       $startBtn = $("#start-btn");
 
-  // Default: 
-  //    set the first col-item to '.shown'
-  //      and top: 0px
-  $item1 = $(".column-box .item-one");
-  $item1.addClass("shown").css("top", 0);
-  //    set the second col-item to '.below'
-  //      and top: 200px
-  $item2 = $(".column-box .item-two")
-  $item2.addClass("next").css("top", -200);
-  //    set the third col-item to '.above'
-  //      and top: -200px
-  $item3 = $(".column-box .item-three")
-  $item3.addClass("last").css("top", -200);
+  // Column One
+  $oneOne = $("#col-one .item-one");
+  $oneTwo = $("#col-one .item-two");
+  $oneThree = $("#col-one .item-three");
+  // Column Two
+  $twoOne = $("#col-two .item-one");
+  $twoTwo = $("#col-two .item-two");
+  $twoThree = $("#col-two .item-three");
+  // Column Three
+  $threeOne = $("#col-three .item-one");
+  $threeTwo = $("#col-three .item-two");
+  $threeThree = $("#col-three .item-three");
+
+  // Set classes for each column
+  setClass($oneOne, $oneTwo, $oneThree);
+  setClass($twoOne, $twoTwo, $twoThree);
+  setClass($threeOne, $threeTwo, $threeThree);
+
 
   $startBtn.on("click", function() {
-    initiateSpin($item1, $item2, $item3);
+    initiateSpin($oneOne, $oneTwo, $oneThree);
+    initiateSpin($twoOne, $twoTwo, $twoThree);
+    initiateSpin($threeOne, $threeTwo, $threeThree);
   })
 });
