@@ -44,7 +44,9 @@ $(function() {
 
 
   $startBtn.on("click", function() {
-    updateClass($item1);
-    updateClass($item2);
+    var refreshId = setInterval(() => {
+      updateClass($item1);
+      updateClass($item2);
+    }, 2000)
   })
 });
