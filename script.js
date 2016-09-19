@@ -1,6 +1,9 @@
+// 1. spinItem function (consider name )
+
+
 // Function updates the class and animates change to
 // CSS position for items
-function updateClass(el) {
+function spinItem(el) {
   if (el.hasClass("shown")) {
   // If currently class is "shown", 
     // 1. change class to "below" 
@@ -48,19 +51,20 @@ $(function() {
   $item3.addClass("last").css("top", -200);
 
   $startBtn.on("click", function() {
-    var counter = 0;
+    // Determine number of spins and set count
     var spinTotal = Math.floor(Math.random() * 10);
-    console.log("Number of spins is ", spinTotal)
+    var counter = 0;
+    // console.log("Number of spins is ", spinTotal)
     var refreshId = setInterval(() => {
       if (counter === spinTotal) {
         clearInterval(refreshId)
-        console.log("INTERVAL STOPPED")
+        // console.log("INTERVAL STOPPED")
       }
-      updateClass($item1);
-      updateClass($item2);
-      updateClass($item3);
+      spinItem($item1);
+      spinItem($item2);
+      spinItem($item3);
       counter++;
-      console.log("counter is ", counter)
+      // console.log("counter is ", counter)
 
     // At the moment the interval time needs to be larger 
     // than the animation speed or the animation breaks
