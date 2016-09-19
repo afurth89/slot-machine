@@ -48,10 +48,20 @@ $(function() {
   $item3.addClass("last").css("top", -200);
 
   $startBtn.on("click", function() {
+    var counter = 0;
+    var spinTotal = Math.floor(Math.random() * 10);
+    console.log("Number of spins is ", spinTotal)
     var refreshId = setInterval(() => {
+      if (counter === spinTotal) {
+        clearInterval(refreshId)
+        console.log("INTERVAL STOPPED")
+      }
       updateClass($item1);
       updateClass($item2);
       updateClass($item3);
+      counter++;
+      console.log("counter is ", counter)
+
     // At the moment the interval time needs to be larger 
     // than the animation speed or the animation breaks
     }, 550)
