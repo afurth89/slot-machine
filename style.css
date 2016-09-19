@@ -7,46 +7,31 @@ body {
   font: 14px Georgia, serif; 
 }
 
-/* Wraps entire slot machine, button included*/
+/* Wraps entire page, button included*/
 #page-wrapper { 
   width: 700px; 
   margin: 50px auto; 
 }
 
-/* Wraps the three slot machine columns */
-#viewbox-wrapper { 
-/*  -moz-box-shadow: 0 0 20px black; 
-  -webkit-box-shadow: 0 0 20px black;*/ 
-  position: relative; 
-  overflow: hidden; 
-  padding: 20px; background: white; 
-  border: 1px solid #ccc; 
-  margin: -1px 0 0 0; 
-  height: 220px; 
-  width: 650px;
+.col-viewbox {
+    overflow: hidden;
+    width: 300px;
+    height: 200px;
+    border: solid 1px #000;
+    position: relative;
 }
-
-/* Wraps a single column */
-#viewbox-wrapper .column-wrapper { 
-  position: relative;
-  float: left; 
-  width: 30%; 
-  top: 20px; 
-  left: 20px; 
-  height: 200px;
-  border: 1px solid black;
+.col-viewbox .col-wrapper {
+    position: relative;
 }
-
-.column-wrapper ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.col-viewbox ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-
-.col-item {
-  display: block;
-  height: 200px;
-  width: 200px;
-  text-align: center;
-  font-size: 4em;
+.col-viewbox li {
+    display: block;
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    font-size: 170px;
 }
