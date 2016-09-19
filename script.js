@@ -16,43 +16,53 @@ $( document ).ready(function() {
   firstItem.clone().appendTo(itemList)
 
 
-  // 1. Pass in a count for the number of spins
-  // 2. .stop() allows us to ensure that any effects
-      // effects of previous spin animation are killed
-  // 3. Animates the list sliding upwards, creating a 
-      // scroll effect
-  // 4. IF still iterations left in count...
-      // repeat spin animation (count decrements)
-    // ELSE if count is at 0 and this is final iteration
+  
+  // A vertical scroll through the 
+  // list of items to simulate a 'spin'
 
+  // Will go through given number of 'spins'
+  // and on final spin will select a winning
+  // element and end 'spin' animation there
   function spin(count) {
-    $('#col-one').stop().animate({
+    $('#col-one')
+    .stop()  // Reset, ensure previous animation stopped
+    // 'spin' animation, scroll item list top to bottom
+    .animate({
         top: -600
     }, 2000, 'linear', function () {
-        if (count == 0) {
-            var slot = Math.floor(Math.random() * 3),
-                top = -slot * 200,
-                time =  2000 * slot / 3;
-            console.log(count, slot, top, time)
-            $(this).css({
-                top: 0
-            }).animate({
-                top: top
-            }, time, 'linear')
-        } else {
-            $(this).css({
-                top: 0
-            })
-            spin(count - 1)
-        };
+      // If final spin, determine ending element
+      if (count == 0) {
+        // Pick a 'winning' slot
+        var slot = Math.floor(Math.random() * 3),
+        // Set the height required for 'winning' slo
+            top = -slot * 200,
+        // Adjust time of animation to slot's distance
+        // from top, so motion speed remains constant 
+            time =  2000 * slot / 3;
+        console.log(count, slot, top, time)
+        // Run final 'spin'
+        $(this).css({
+            top: 0
+        }).animate({
+            top: top
+        }, time, 'linear')
+
+      // If this is not the final spin, decrement count
+      // and scroll through items again
+      } else {
+          $(this).css({
+              top: 0
+          })
+          spin(count - 1)
+      };
     });
   }
 
   $('#start-btn').click(function () {
-      $('#col-one').css({
-          top: 0
-      }) 
-      spin(1)
+    $('#col-one').css({
+        top: 0
+    }) 
+    spin(1)
   });
 
 });
