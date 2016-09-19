@@ -35,7 +35,9 @@ function spinItem(el) {
   }
 }
 
-function initiateSpin(item1, item2, item3, spinTotal) {
+function initiateSpin(item1, item2, item3) {
+  // Determine number of spins and set count
+  var spinTotal = Math.floor(Math.random() * 10);
   var counter = 0;
   // console.log("Number of spins is ", spinTotal)
   var refreshId = setInterval(() => {
@@ -73,8 +75,6 @@ $(function() {
   $item3.addClass("last").css("top", -200);
 
   $startBtn.on("click", function() {
-    // Determine number of spins and set count
-    var spinTotal = Math.floor(Math.random() * 10);
-    initiateSpin($item1, $item2, $item3, spinTotal);
+    initiateSpin($item1, $item2, $item3);
   })
 });
