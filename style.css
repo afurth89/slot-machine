@@ -21,17 +21,19 @@ body {
   border: 1px solid #ccc; 
   margin: -1px 0 0 0; 
   height: 210px; 
+  width: 650px;
   position: relative; 
 }
 
 
 /* Wraps a single column */
 .column-box { 
-  position: relative; 
+  position: relative;
+  float: left; 
+  width: 30%; 
   overflow: hidden; 
   top: 20px; 
   left: 20px; 
-  width: 200px; 
   height: 200px;
   border: 1px solid black;
 }

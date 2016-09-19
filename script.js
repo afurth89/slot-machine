@@ -1,11 +1,5 @@
-// 1. Get two column items to switch back and forth on click
-//    --Set .shown and .below classes
-// 2. Get two col-items to animate back and forth on click
-//    --For .shown, go from top = 0, to top = 200px
-//    --For .below, go from top = -200px to top = 0px;
-// 3. Create a continuous loop of Step 2
-// 4. Repeat 1-3 with three items
-
+// Function updates the class and animates change to
+// CSS position for items
 function updateClass(el) {
   if (el.hasClass("shown")) {
   // If currently class is "shown", 
