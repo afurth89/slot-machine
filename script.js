@@ -1,3 +1,5 @@
+// SOURCING: http://jsfiddle.net/jakecigar/aMmhZ/12/
+
 $( document ).ready(function() {
   // Store final result of each column
   var columnPositions;
