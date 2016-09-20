@@ -51,13 +51,11 @@ body {
   padding: 0;
 }
 .col-viewbox li {
-    display: block;
-    height: 200px;
-    text-align: center;
-    font-size: 170px;
+  display: block;
+  height: 300px;
 }
 
-.col-item-1 img {
-  background-color: rgba(255,255,224, 0.3)
+
+img {
   width: 100%;
 }
