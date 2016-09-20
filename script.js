@@ -94,19 +94,16 @@ $( document ).ready(function() {
     // Add the position of column to arr, to check for winner
     columnPositions.push(colPos)
     if (columnPositions.length === 3) {
-      console.log("Let's check for a winner")
-      showWinner("COFFEE", "./assets/cup_coffee.png")
-      // Check is columns are same
+      // Check if columns are same
       if (columnPositions[0] === columnPositions[1] &&
           columnPositions[0] === columnPositions[2]) {
-        console.log('WINNER')
         // Determine what the winning item is
         if(columnPositions[0] === 0) {
-          console.log("All 1s")
+          showWinner("COFFEE", "./assets/cup_coffee.png")
         } else if (columnPositions[0] === -200) {
-          console.log("All 2s")
+          showWinner("TEA", "./assets/cup_tea.jpg")
         } else {
-          console.log("All 3s")
+          showWinner("ESPRESSO", "./assets/cup_espresso.jpg")
         }
         // SHOW WINNER SHOULD GO HERE,
         // pass in the winning beverage
