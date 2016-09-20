@@ -17,64 +17,44 @@ body {
 
 /* Wraps entire page, button included*/
 #page-wrapper { 
-  width: 700px; 
+  width: 1200px; 
   margin: 50px auto; 
 }
 
 #slot-machine-wrapper {
   position: relative;
-  width: 600px;
-  height: 200px;
+  display: flex;
+  width: 1200px;
+  height: 350px;
+  background-color: red;
+  border: solid 10px yellow;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .col-viewbox {
   overflow: hidden;
   position: relative;
-  float: left;
-  width: 30%;
-  height: 200px;
-  border: solid 1px #000;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  border: solid 10px #000;
+  border-radius: 5px;
 }
 .col-viewbox .col-wrapper {
-    position: relative;
+  position: relative;
 }
+
 .col-viewbox ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .col-viewbox li {
     display: block;
     height: 200px;
     text-align: center;
     font-size: 170px;
-}
-
-.col-item-1 {
-  background: 
-  -webkit-linear-gradient(rgba(255,255,224, 0.3), rgba(255,255,224, 0.3));
-  background: 
-  -o-linear-gradient(rgba(255,255,224, 0.3), rgba(255,255,224, 0.3));
-  background: 
-  linear-gradient(rgba(255,255,224, 0.3), rgba(255,255,224, 0.3));
-}
-
-.col-item-2 {
-  background: 
-  -webkit-linear-gradient(rgba(152,251,152, 0.3), rgba(152,251,152, 0.3));
-  background: 
-  -o-linear-gradient(rgba(152,251,152, 0.3), rgba(152,251,152, 0.3));
-  background: 
-  linear-gradient(rgba(152,251,152, 0.3), rgba(152,251,152, 0.3));
-}
-
-.col-item-3 {
-  background: 
-  -webkit-linear-gradient(rgba(240,128,128, 0.3), rgba(240,128,128, 0.3));
-  background: 
-  -o-linear-gradient(rgba(240,128,128, 0.3), rgba(240,128,128, 0.3));
-  background: 
-  linear-gradient(rgba(240,128,128, 0.3), rgba(240,128,128, 0.3));
 }
 
 .col-item-1 img {
