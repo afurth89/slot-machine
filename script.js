@@ -37,13 +37,13 @@ $( document ).ready(function() {
   // Will go through given number of 'spins'
   // and on final spin will select a winning
   // element and end 'spin' animation there
-  function spin(column, count) {
+  function spin(column, count, duration) {
     column
     .stop()  // Reset, ensure previous animation stopped
     // 'spin' animation, scroll item list top to bottom
     .animate({
         top: -600
-    }, 2000, 'linear', function () {
+    }, duration, 'linear', function () {
       // If final spin, determine ending element
       if (count == 0) {
         // Pick a 'winning' slot
@@ -51,8 +51,8 @@ $( document ).ready(function() {
         // Set the height required for 'winning' slo
             top = -slot * 200,
         // Adjust time of animation to slot's distance
-        // from top, so motion speed remains constant 
-            time =  2000 * slot / 3;
+        // from top, so motion duration remains constant 
+            time =  duration * slot / 3;
         console.log(count, slot, top, time)
         // Run final 'spin'
         $(this).css({
@@ -67,7 +67,9 @@ $( document ).ready(function() {
           $(this).css({
               top: 0
           })
-          spin(column, count - 1)
+          // Decrement count, but increase spin duration
+          // to create 'slowing' down effect
+          spin(column, count - 1, duration+100)
       };
     });
   }
@@ -82,17 +84,17 @@ $( document ).ready(function() {
     $('#col-one').css({
         top: 0
     }) 
-    spin($('#col-one'), colOneSpins)
+    spin($('#col-one'), colOneSpins, 500)
 
     $('#col-two').css({
         top: 0
     }) 
-    spin($('#col-two'), colOneSpins+1)
+    spin($('#col-two'), colOneSpins+1, 600)
 
     $('#col-three').css({
         top: 0
     }) 
-    spin($('#col-three'), colOneSpins+2)
+    spin($('#col-three'), colOneSpins+2, 700)
   });
 
 });
