@@ -19,6 +19,20 @@ body {
 #page-wrapper { 
   width: 1200px; 
   margin: 50px auto; 
+  position: relative;
+}
+
+#winner-wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: green;
+  color: white;
+  border: 10px solid white;
+  border-radius: white;
+  width: 50%;
+  height: 150px;
+  z-index: 1;
 }
 
 #container-wrapper {
@@ -74,8 +88,6 @@ body {
   color: rgb(220,220,220);
 }
 
-
-
 .col-viewbox {
   overflow: hidden;
   position: relative;
@@ -98,7 +110,6 @@ body {
   display: block;
   height: 250px;
 }
-
 
 img {
   width: 100%;
