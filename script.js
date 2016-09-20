@@ -1,4 +1,7 @@
-// SOURCING: http://jsfiddle.net/jakecigar/aMmhZ/12/
+// TODO: Include sourcing?
+// Much of my code for the slot machine animnation was
+// based on the following fiddle:
+// http://jsfiddle.net/jakecigar/aMmhZ/12/
 
 $( document ).ready(function() {
   // Store final result of each column
@@ -49,14 +52,14 @@ $( document ).ready(function() {
     .stop()  // Reset, ensure previous animation stopped
     // 'spin' animation, scroll item list top to bottom
     .animate({
-        top: -600
+        top: -900
     }, duration, 'linear', function () {
       // If final spin, determine ending element
       if (count == 0) {
         // Pick a 'winning' slot
         var slot = Math.floor(Math.random() * 3),
         // Set the height required for 'winning' slo
-            top = -slot * 200,
+            top = -slot * 300,
         // Adjust time of animation to slot's distance
         // from top, so motion duration remains constant 
             time =  duration * slot / 3;
