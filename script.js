@@ -19,21 +19,29 @@ $( document ).ready(function() {
   // TODO: Create function to delegate cloning of
   // first item in list
 
-  // Clone Col 1
-  var itemList1 = $('#col-one>ul:first')
-  var firstItem1 = itemList1.find('li:first')
-  firstItem1.clone().appendTo(itemList1)
+  var columns = ['one', 'two', 'three']
+
+  columns.forEach((el) => {
+    var itemList = $('#col-'+el+'>ul:first')
+    var firstItem = itemList.find('li:first')
+    firstItem.clone().appendTo(itemList)
+  })
+
+  // // Clone Col 1
+  // var itemList1 = $('#col-one>ul:first')
+  // var firstItem1 = itemList1.find('li:first')
+  // firstItem1.clone().appendTo(itemList1)
 
 
-  // Clone Col 2
-  var itemList2 = $('#col-two>ul:first')
-  var firstItem2 = itemList2.find('li:first')
-  firstItem2.clone().appendTo(itemList2)
+  // // Clone Col 2
+  // var itemList2 = $('#col-two>ul:first')
+  // var firstItem2 = itemList2.find('li:first')
+  // firstItem2.clone().appendTo(itemList2)
 
-  // Clone Col 3
-  var itemList3 = $('#col-three>ul:first')
-  var firstItem3 = itemList3.find('li:first')
-  firstItem3.clone().appendTo(itemList3)
+  // // Clone Col 3
+  // var itemList3 = $('#col-three>ul:first')
+  // var firstItem3 = itemList3.find('li:first')
+  // firstItem3.clone().appendTo(itemList3)
 
   // TODO - Make "WINNER" blink
 
@@ -44,6 +52,8 @@ $( document ).ready(function() {
       // We'll increment that val for cols Two and Three
       // to mirror a normal slot machine where reels finish
       // left to right
+
+    // TODO - Add more spins and make it muchfaster to start
     var colOneSpins = Math.floor(Math.random() * 6)  
 
     // TODO - DRY code
