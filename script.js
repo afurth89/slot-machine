@@ -94,16 +94,17 @@ $( document ).ready(function() {
     // Add the position of column to arr, to check for winner
     columnPositions.push(colPos)
     if (columnPositions.length === 3) {
+      showWinner("COFFEE", "./assets/cup_coffee.png")
       // Check if columns are same
       if (columnPositions[0] === columnPositions[1] &&
           columnPositions[0] === columnPositions[2]) {
         // Determine what the winning item is
         if(columnPositions[0] === 0) {
-          showWinner("COFFEE", "./assets/cup_coffee.png")
+          showWinner("coffee")
         } else if (columnPositions[0] === -200) {
-          showWinner("TEA", "./assets/cup_tea.jpg")
+          showWinner("tea")
         } else {
-          showWinner("ESPRESSO", "./assets/cup_espresso.jpg")
+          showWinner("espresso")
         }
         // SHOW WINNER SHOULD GO HERE,
         // pass in the winning beverage
@@ -112,17 +113,14 @@ $( document ).ready(function() {
   }
 
 
-  function showWinner(bevName, bevImg) {
-    // Create image element for winning bev
-    var winImg = $('<img />', { 
-      src: bevImg,
-      alt: bevName.toLowerCase()
-    });
-    // Create h2 element for winning bev name
-    var winBev = $('<h2>'+ bevName +'</h2>')
-    // Append bev img and name to div
-    winImg.appendTo($('#winner-wrapper'));
-    winBev.appendTo($('#winner-wrapper'))
+  function showWinner(bevName) {
+    // Update the src and alt attributes for img
+    $('#winner-wrapper>img').attr({
+      src: './assets/cup_'+bevName+'.jpg',
+      alt: bevName
+    })
+    // Insert the winning bev (uppercased) into h2
+    $('#winning-bev-name').text(bevName.toUpperCase())
     // Animate in winner wrapper
     $('#winner-wrapper').animate({
       left: 150
@@ -153,5 +151,14 @@ $( document ).ready(function() {
     }) 
     spin($('#col-three'), colOneSpins+2, 700)
   });
+
+  $('#reset-btn').click(function(e) {
+    console.log(e)
+    // Animate out winner wrapper
+    $('#winner-wrapper').animate({
+      left: -2000
+    }, 1000, 'linear', function() {
+    })
+  })
 
 });
