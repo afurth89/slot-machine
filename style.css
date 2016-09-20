@@ -41,3 +41,15 @@ body {
     text-align: center;
     font-size: 170px;
 }
+
+.col-item-1 {
+  background-color: rgba(255,255,224, 0.3);
+}
+
+.col-item-2 {
+  background-color: rgba(152,251,152, 0.3);
+}
+
+.col-item-3 {
+  background-color: rgba(240,128,128, 0.3);
+}
