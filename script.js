@@ -52,14 +52,14 @@ $( document ).ready(function() {
     .stop()  // Reset, ensure previous animation stopped
     // 'spin' animation, scroll item list top to bottom
     .animate({
-        top: -900
+        top: -750
     }, duration, 'linear', function () {
       // If final spin, determine ending element
       if (count == 0) {
         // Pick a 'winning' slot
         var slot = Math.floor(Math.random() * 3),
         // Set the height required for 'winning' slo
-            top = -slot * 300,
+            top = -slot * 250,
         // Adjust time of animation to slot's distance
         // from top, so motion duration remains constant 
             time =  duration * slot / 3;
