@@ -42,6 +42,7 @@ body {
   display: block;
   height: 100px;
   color: white;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
   text-align: center;
 }
 
@@ -60,15 +61,17 @@ body {
   width: 25%;
   margin-top: 10px;
   border-radius: 5px;
-  color: white;
   background-color: rgb(50,205,50);
   font-family: 'Gravitas One', cursive;
+  color: white;
   font-size: 24px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
   outline: none;
 }
 
 #start-btn:hover {
   background-color: rgb(34,139,34);
+  color: rgb(220,220,220);
 }
 
 
