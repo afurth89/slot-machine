@@ -43,20 +43,33 @@ body {
 }
 
 .col-item-1 {
-  background: linear-gradient(
-    rgba(255,255,224, 0.3),
-    rgba(255,255,224, 0.3)
-  )
+  background: 
+  -webkit-linear-gradient(rgba(255,255,224, 0.3), rgba(255,255,224, 0.3));
+  background: 
+  -o-linear-gradient(rgba(255,255,224, 0.3), rgba(255,255,224, 0.3));
+  background: 
+  linear-gradient(rgba(255,255,224, 0.3), rgba(255,255,224, 0.3));
 }
 
 .col-item-2 {
-  background-color: rgba(152,251,152, 0.3);
+  background: 
+  -webkit-linear-gradient(rgba(152,251,152, 0.3), rgba(152,251,152, 0.3));
+  background: 
+  -o-linear-gradient(rgba(152,251,152, 0.3), rgba(152,251,152, 0.3));
+  background: 
+  linear-gradient(rgba(152,251,152, 0.3), rgba(152,251,152, 0.3));
 }
 
 .col-item-3 {
-  background-color: rgba(240,128,128, 0.3);
+  background: 
+  -webkit-linear-gradient(rgba(240,128,128, 0.3), rgba(240,128,128, 0.3));
+  background: 
+  -o-linear-gradient(rgba(240,128,128, 0.3), rgba(240,128,128, 0.3));
+  background: 
+  linear-gradient(rgba(240,128,128, 0.3), rgba(240,128,128, 0.3));
 }
 
-img {
+.col-item-1 img {
+  background-color: rgba(255,255,224, 0.3)
   width: 100%;
 }
