@@ -95,7 +95,7 @@ $( document ).ready(function() {
     columnPositions.push(colPos)
     if (columnPositions.length === 3) {
       console.log("Let's check for a winner")
-      showWinner()
+      showWinner("COFFEE", "./assets/cup_coffee.png")
       // Check is columns are same
       if (columnPositions[0] === columnPositions[1] &&
           columnPositions[0] === columnPositions[2]) {
@@ -108,12 +108,25 @@ $( document ).ready(function() {
         } else {
           console.log("All 3s")
         }
+        // SHOW WINNER SHOULD GO HERE,
+        // pass in the winning beverage
       }
     }
   }
 
 
-  function showWinner() {
+  function showWinner(bevName, bevImg) {
+    // Create image element for winning bev
+    var winImg = $('<img />', { 
+      src: bevImg,
+      alt: bevName.toLowerCase()
+    });
+    // Create h2 element for winning bev name
+    var winBev = $('<h2>'+ bevName +'</h2>')
+    // Append bev img and name to div
+    winImg.appendTo($('#winner-wrapper'));
+    winBev.appendTo($('#winner-wrapper'))
+    // Animate in winner wrapper
     $('#winner-wrapper').animate({
       left: 150
     }, 1000, 'linear')
