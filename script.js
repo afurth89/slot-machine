@@ -1,4 +1,9 @@
 $( document ).ready(function() {
+  // Store final result of each column
+  var columnPositions;
+
+
+
   // Clone the first element; append to end of list
 
   // Reason? --> As the final item is exiting the viewport
@@ -30,8 +35,6 @@ $( document ).ready(function() {
   var firstItem3 = itemList3.find('li:first')
   firstItem3.clone().appendTo(itemList3)
 
-
-  var columnsFinished = 0;
   
   // A vertical scroll through the 
   // list of items to simulate a 'spin'
@@ -65,9 +68,9 @@ $( document ).ready(function() {
 
         // Trigger a function that count whether 
         // all three columns have finished spinning
-        anotherColumnFinished();
-        // Also, will need to use the CSS "top" attribute
-        // to determine what the "visible" element is
+        // Also, pass along the 'top' value to check for 
+        // winner
+        checkForWinner(top);
 
       // If this is not the final spin, decrement count
       // and scroll through items again
@@ -82,21 +85,32 @@ $( document ).ready(function() {
     });
   }
 
-  function anotherColumnFinished() {
-    columnsFinished++;
-    if (columnsFinished === 3) {
-      console.log("Columns finished: ", columnsFinished)
-      checkForWinner();
+  function checkForWinner(colPos) {
+    // Add the position of column to arr, to check for winner
+    columnPositions.push(colPos)
+    if (columnPositions.length === 3) {
+      console.log("Let's check for a winner")
+      // Check is columns are same
+      if (columnPositions[0] === columnPositions[1] &&
+          columnPositions[0] === columnPositions[2]) {
+        console.log('WINNER')
+        // Determine what the winning item is
+        if(columnPositions[0] === 0) {
+          console.log("All 1s")
+        } else if (columnPositions[0] === -200) {
+          console.log("All 2s")
+        } else {
+          console.log("All 3s")
+        }
+      }
     }
-  }
-
-  function checkForWinner() {
-    console.log("Let's check for a winner")
   }
 
   // TODO: Delegate setting the css and calling 
   // 'spin' function across columns
   $('#start-btn').click(function () {
+    // Clear the columnPositions array
+    columnPositions = [];
     // Set random spin values between 1 and 5 for colOne
       // We'll increment that val for cols Two and Three
       // to mirror how a normal slot machine finishes
