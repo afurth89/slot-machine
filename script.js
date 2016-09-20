@@ -30,6 +30,8 @@ $( document ).ready(function() {
   var firstItem3 = itemList3.find('li:first')
   firstItem3.clone().appendTo(itemList3)
 
+
+  var columnsFinished = 0;
   
   // A vertical scroll through the 
   // list of items to simulate a 'spin'
@@ -61,6 +63,12 @@ $( document ).ready(function() {
             top: top
         }, time, 'linear')
 
+        // Trigger a function that count whether 
+        // all three columns have finished spinning
+        anotherColumnFinished();
+        // Also, will need to use the CSS "top" attribute
+        // to determine what the "visible" element is
+
       // If this is not the final spin, decrement count
       // and scroll through items again
       } else {
@@ -72,6 +80,18 @@ $( document ).ready(function() {
           spin(column, count - 1, duration+100)
       };
     });
+  }
+
+  function anotherColumnFinished() {
+    columnsFinished++;
+    if (columnsFinished === 3) {
+      console.log("Columns finished: ", columnsFinished)
+      checkForWinner();
+    }
+  }
+
+  function checkForWinner() {
+    console.log("Let's check for a winner")
   }
 
   // TODO: Delegate setting the css and calling 
