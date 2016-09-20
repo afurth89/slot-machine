@@ -4,11 +4,6 @@
 // http://jsfiddle.net/jakecigar/aMmhZ/12/
 
 $( document ).ready(function() {
-  // Store final result of each column
-  var columnPositions;
-
-
-
   // Clone the first element; append to end of list
 
   // Reason? --> As the final item is exiting the viewport
@@ -40,102 +35,18 @@ $( document ).ready(function() {
   var firstItem3 = itemList3.find('li:first')
   firstItem3.clone().appendTo(itemList3)
 
-  
-  // A vertical scroll through the 
-  // list of items to simulate a 'spin'
-
-  // Will go through given number of 'spins'
-  // and on final spin will select a winning
-  // element and end 'spin' animation there
-  function spin(column, count, duration) {
-    column
-    .stop()  // Reset, ensure previous animation stopped
-    // 'spin' animation, scroll item list top to bottom
-    .animate({
-        top: -750
-    }, duration, 'linear', function () {
-      // If final spin, determine ending element
-      if (count == 0) {
-        // Pick a 'winning' slot
-        var slot = Math.floor(Math.random() * 3),
-        // Set the height required for 'winning' slo
-            top = -slot * 250,
-        // Adjust time of animation to slot's distance
-        // from top, so motion duration remains constant 
-            time =  duration * slot / 3;
-        console.log(count, slot, top, time)
-        // Run final 'spin'
-        $(this).css({
-            top: 0
-        }).animate({
-            top: top
-        }, time, 'linear')
-
-        // Trigger a function that count whether 
-        // all three columns have finished spinning
-        // Also, pass along the 'top' value to check for 
-        // winner
-        checkForWinner(top);
-
-      // If this is not the final spin, decrement count
-      // and scroll through items again
-      } else {
-          $(this).css({
-              top: 0
-          })
-          // Decrement count, but increase spin duration
-          // to create 'slowing' down effect
-          spin(column, count - 1, duration+100)
-      };
-    });
-  }
-
-  function checkForWinner(colPos) {
-    // Add the position of column to arr, to check for winner
-    columnPositions.push(colPos)
-    if (columnPositions.length === 3) {
-      showWinner("COFFEE", "./assets/cup_coffee.png")
-      // Check if columns are same
-      if (columnPositions[0] === columnPositions[1] &&
-          columnPositions[0] === columnPositions[2]) {
-        // Determine what the winning item is
-        if(columnPositions[0] === 0) {
-          showWinner("coffee")
-        } else if (columnPositions[0] === -200) {
-          showWinner("tea")
-        } else {
-          showWinner("espresso")
-        }
-        // SHOW WINNER SHOULD GO HERE,
-        // pass in the winning beverage
-      }
-    }
-  }
-
-
-  function showWinner(bevName) {
-    // Update the src and alt attributes for img
-    $('#winner-wrapper>img').attr({
-      src: './assets/cup_'+bevName+'.jpg',
-      alt: bevName
-    })
-    // Insert the winning bev (uppercased) into h2
-    $('#winning-bev-name').text(bevName.toUpperCase())
-    // Animate in winner wrapper
-    $('#winner-wrapper').animate({
-      left: 150
-    }, 1000, 'linear')
-  }
+  // TODO - Make "WINNER" blink
 
   // TODO: Delegate setting the css and calling 
   // 'spin' function across columns
   $('#start-btn').click(function () {
-    // Clear the columnPositions array
-    columnPositions = [];
     // Set random spin values between 1 and 5 for colOne
       // We'll increment that val for cols Two and Three
-      // to mirror how a normal slot machine finishes
+      // to mirror a normal slot machine where reels finish
+      // left to right
     var colOneSpins = Math.floor(Math.random() * 6)  
+
+    // TODO - DRY code
     $('#col-one').css({
         top: 0
     }) 
@@ -152,13 +63,12 @@ $( document ).ready(function() {
     spin($('#col-three'), colOneSpins+2, 700)
   });
 
-  $('#reset-btn').click(function(e) {
-    console.log(e)
+  // Reset Function
+  $('#reset-btn').click(function() {
     // Animate out winner wrapper
     $('#winner-wrapper').animate({
       left: -2000
-    }, 1000, 'linear', function() {
-    })
+    }, 1000, 'linear')
   })
 
 });
