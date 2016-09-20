@@ -95,6 +95,7 @@ $( document ).ready(function() {
     columnPositions.push(colPos)
     if (columnPositions.length === 3) {
       console.log("Let's check for a winner")
+      showWinner()
       // Check is columns are same
       if (columnPositions[0] === columnPositions[1] &&
           columnPositions[0] === columnPositions[2]) {
@@ -109,6 +110,13 @@ $( document ).ready(function() {
         }
       }
     }
+  }
+
+
+  function showWinner() {
+    $('#winner-wrapper').animate({
+      left: 150
+    }, 1000, 'linear')
   }
 
   // TODO: Delegate setting the css and calling 
