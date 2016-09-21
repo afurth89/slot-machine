@@ -9,6 +9,7 @@ var columnPositions = [];
 // and on final spin will select a winning
 // element and end 'spin' animation there
 function spin(column, count, duration) {
+  console.log("spin triggered")
   column
   .stop()  // Reset, ensure previous animation stopped
   // 'spin' animation, scroll item list top to bottom

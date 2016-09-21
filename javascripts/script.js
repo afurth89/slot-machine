@@ -15,40 +15,41 @@ $( document ).ready(function() {
   // resetting and the first <li> filling the frame.
   // However since the first and last item are identical
   // the 'jump' is imperceptible to the user
-  var columns = ['one', 'two', 'three']
+  var colNames = ['one', 'two', 'three']
 
-  columns.forEach((el) => {
+  colNames.forEach((el) => {
     var itemList = $('#col-'+el+'>ul:first')
     var firstItem = itemList.find('li:first')
     firstItem.clone().appendTo(itemList)
   })
 
-  // TODO: Delegate setting the css and calling 
-  // 'spin' function across columns
+  // Start a spin
   $('#start-btn').click(function () {
-    // Set random spin values between 1 and 5 for colOne
+    // Set random spin values for colOne
       // We'll increment that val for cols Two and Three
       // to mirror a normal slot machine where reels finish
       // left to right
 
     // TODO - Add more spins and make it muchfaster to start
-    var colOneSpins = Math.floor(Math.random() * 12)  
+    // Minimum 10, max 15 spins
+    var colSpins = Math.floor(Math.random() * 6) + 10  
+    var colDelay = 0;
 
-    // TODO - DRY code
-    $('#col-one').css({
-        top: 0
-    }) 
-    spin($('#col-one'), colOneSpins, 200)
+    // Start each column spinning
+    colNames.forEach((el) => {
+      var colWrapper = $('#col-'+el)
+      // Ensure all columns are in start position
+      colWrapper.css( {top: 0} )
+      // spin function must be passed through anonymous func
+      // so it isn't immediately invoked
+      setTimeout(function() {
+        spin(colWrapper, colSpins, 200)
+      }, colDelay)
+      // Increment setTimeout delay so columns start spinning
+      // in order (not simultaneously)
+      colDelay += 500;
+    })
 
-    $('#col-two').css({
-        top: 0
-    }) 
-    spin($('#col-two'), colOneSpins+1, 200)
-
-    $('#col-three').css({
-        top: 0
-    }) 
-    spin($('#col-three'), colOneSpins+2, 200)
   });
 
   // Reset Function
