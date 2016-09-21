@@ -11,7 +11,6 @@ var columnPositions = [];
 // and on final spin will select a winning
 // element and end 'spin' animation there
 function spin(column, count, duration) {
-  console.log("spin triggered")
   column
   .stop()  // Reset, ensure previous animation stopped
   // 'spin' animation, scroll item list top to bottom
@@ -27,7 +26,6 @@ function spin(column, count, duration) {
       // Adjust time of animation to slot's distance
       // from top, so motion duration remains constant 
           time =  duration * slot / 3;
-      console.log(count, slot, top, time)
       // Run final 'spin'
       $(this).css({
           top: 0
