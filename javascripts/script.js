@@ -30,7 +30,6 @@ $( document ).ready(function() {
       // to mirror a normal slot machine where reels finish
       // left to right
 
-    // TODO - Add more spins and make it muchfaster to start
     // Minimum 10, max 15 spins
     var colSpins = Math.floor(Math.random() * 6) + 10  
     var colDelay = 0;
