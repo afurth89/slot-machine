@@ -64,13 +64,18 @@ body {
 
 #reset-btn {
   border-radius: 5px;
-  background-color: red;
+  background-color: rgb(255,0,0);
   font-family: 'Gravitas One', cursive;
   color: white;
   font-size: 16px;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
   padding: 3px;
   outline: none;
+}
+
+#reset-btn:hover {
+  background-color: rgb(139,0,0);
+  color: rgb(220,220,220);
 }
 
 #title-wrapper, #slot-machine-wrapper, #button-wrapper {
