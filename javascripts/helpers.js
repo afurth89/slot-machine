@@ -55,10 +55,8 @@ function spin(column, count, duration) {
 function checkForWinner(colPos) {
   // Add the position of column to arr, to check for winner
   columnPositions.push(colPos)
+  // Check if all three columns finished spinning
   if (columnPositions.length === 3) {
-  showWinner("coffee")
-  // TODO - Remove
-  console.log(columnPositions)
     // Check if columns are same
     if (columnPositions[0] === columnPositions[1] &&
         columnPositions[0] === columnPositions[2]) {
