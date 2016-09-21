@@ -118,9 +118,11 @@ body {
 
 #start-btn:hover {
   background-color: rgb(34,139,34);
-  color: rgb(220,220,220);
 }
 
+#start-btn:hover span {
+  color: rgb(220,220,220);
+}
 .col-viewbox {
   overflow: hidden;
   position: relative;
