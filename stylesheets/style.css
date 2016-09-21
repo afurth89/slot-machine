@@ -44,8 +44,8 @@ body {
   left: -2000px;
   padding-top: 25px;
   background-color: white;
-  color: green;
-  border: 10px solid green;
+  color: rgb(50,205,50);
+  border: 10px solid rgb(50,205,50);
   border-radius: 10px;
   text-align: center;
   z-index: 1;
