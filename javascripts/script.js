@@ -1,8 +1,3 @@
-// TODO: Include sourcing?
-// Much of my code for the slot machine animnation was
-// based on the following fiddle:
-// http://jsfiddle.net/jakecigar/aMmhZ/12/
-
 $( document ).ready(function() {
   // Clone the first element; append to end of list
 

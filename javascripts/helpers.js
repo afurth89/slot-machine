@@ -1,6 +1,8 @@
 // Store the results of each spin
 var columnPositions = [];
 
+// Citation: http://jsfiddle.net/jakecigar/aMmhZ/12/
+// "Spinning" animation logic was based on this code
 
 // A vertical scroll through the 
 // list of items to simulate a 'spin'
