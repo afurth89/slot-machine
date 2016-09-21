@@ -56,6 +56,7 @@ function checkForWinner(colPos) {
   // Add the position of column to arr, to check for winner
   columnPositions.push(colPos)
   if (columnPositions.length === 3) {
+  showWinner("coffee")
   // TODO - Remove
   console.log(columnPositions)
     // Check if columns are same
@@ -80,7 +81,7 @@ function checkForWinner(colPos) {
 
 function showWinner(bevName) {
     // Update the src and alt attributes for img
-    $('#winner-wrapper>img').attr({
+    $('#winner-img-container>img').attr({
       src: './assets/cup_'+bevName+'.jpg',
       alt: bevName
     })

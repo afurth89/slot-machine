@@ -22,7 +22,6 @@ body {
   position: relative;
 }
 
-
 #container-wrapper {
   position: relative;
   width: 1000px;
@@ -55,15 +54,12 @@ body {
 #winner-wrapper p {
   margin-top: 10px;
   margin-bottom: 5px;
-}
-
-#winner-wrapper p {
   color: black;
   font-size: 16px;
 }
 
-#winner-wrapper img {
-  width: 150px;
+#winner-img-container {
+  height: 150px;
 }
 
 #reset-btn {

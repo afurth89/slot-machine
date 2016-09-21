@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Thumbtack Slot Machine Challenge by Andrew Furth</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./blink_and_pulse.css">
   <!-- Grativas One font -->
   <link href="https://fonts.googleapis.com/css?family=Gravitas+One" rel="stylesheet">
   <!-- jQuery -->
@@ -15,10 +16,12 @@
   <div id="page-wrapper">
     <div id="container-wrapper">
       <div id="winner-wrapper">
-        <h2>!!YOU'RE A WINNER!!</h2>
+        <h2 class="blinking">!!YOU'RE A WINNER!!</h2>
         <p>Your prize is a delicious cup of...</p>
-        <img src="" alt="">
-        <h2 id="winning-bev-name"></h2>
+        <div id="winner-img-container">
+          <img class="pulsing" src="" alt="">
+        </div>
+        <h2 id="winning-bev-name" class="blinking">COFFEE</h2>
         <button id="reset-btn">Grab your beverage and play again?</button>
       </div> <!-- End winner-wrapper--> 
       <div id="title-wrapper">
