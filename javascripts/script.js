@@ -25,15 +25,13 @@ $( document ).ready(function() {
       // to mirror a normal slot machine where reels finish
       // left to right
 
-    // Minimum 10, max 15 spins
-    var colSpins = Math.floor(Math.random() * 6) + 10  
+    // Minimum 5, max 10 spins for column one 
+    var colSpins = Math.floor(Math.random() * 6) + 5  
     var colDelay = 0;
 
     // Start each column spinning
     colNames.forEach((el) => {
       var colWrapper = $('#col-'+el)
-      // Ensure all columns are in start position
-      // colWrapper.css( {top: 0} )
       // spin function must be passed through anonymous func
       // so it isn't immediately invoked
       setTimeout(function() {
@@ -43,7 +41,7 @@ $( document ).ready(function() {
       // in order (not simultaneously)
       colDelay += 500;
       // Increment colSpins so columns always finish left-center-right
-      colSpins++;
+      colSpins += 4;
     })
 
   });

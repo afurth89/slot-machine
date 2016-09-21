@@ -22,7 +22,7 @@ function spin(column, count, duration) {
       // Pick a 'winning' slot
       var slot = Math.floor(Math.random() * 3),
       // Set the height required for 'winning' slo
-      top = -slot * 250,
+      top = slot * -250,
       // Adjust time of animation to slot's distance
       // from top, so motion duration remains constant 
       time =  duration * slot / 3;
@@ -59,16 +59,16 @@ function checkForWinner(colPos) {
   columnPositions.push(colPos)
   // Check if all three columns finished spinning
   if (columnPositions.length === 3) {
-    console.log(columnPositions)
+    var firstVal = columnPositions[0]
     // Check if columns are same
-    if (columnPositions[0] === columnPositions[1] &&
-        columnPositions[0] === columnPositions[2]) {
+    if (firstVal === columnPositions[1] &&
+        firstVal === columnPositions[2]) {
       // Determine what the winning item is by checking
       // the first value (we've already determined all vals
       // in array are same)
-      if(columnPositions[0] === 0) {
+      if(firstVal === 0) {
         showWinner("coffee")
-      } else if (columnPositions[0] === -250) {
+      } else if (firstVal === -250) {
         showWinner("tea")
       } else {
         showWinner("espresso")
