@@ -33,7 +33,7 @@ $( document ).ready(function() {
     colNames.forEach((el) => {
       var colWrapper = $('#col-'+el)
       // Ensure all columns are in start position
-      colWrapper.css( {top: 0} )
+      // colWrapper.css( {top: 0} )
       // spin function must be passed through anonymous func
       // so it isn't immediately invoked
       setTimeout(function() {
@@ -42,6 +42,8 @@ $( document ).ready(function() {
       // Increment setTimeout delay so columns start spinning
       // in order (not simultaneously)
       colDelay += 500;
+      // Increment colSpins so columns always finish left-center-right
+      colSpins++;
     })
 
   });

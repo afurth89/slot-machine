@@ -22,10 +22,10 @@ function spin(column, count, duration) {
       // Pick a 'winning' slot
       var slot = Math.floor(Math.random() * 3),
       // Set the height required for 'winning' slo
-          top = -slot * 250,
+      top = -slot * 250,
       // Adjust time of animation to slot's distance
       // from top, so motion duration remains constant 
-          time =  duration * slot / 3;
+      time =  duration * slot / 3;
       // Run final 'spin'
       $(this).css({
           top: 0
@@ -48,7 +48,7 @@ function spin(column, count, duration) {
         })
         // Decrement count, but increase spin duration
         // to create 'slowing' down effect
-        spin(column, count - 1, duration+100)
+        spin(column, count - 1, duration+50)
     };
   });
 }
@@ -59,6 +59,7 @@ function checkForWinner(colPos) {
   columnPositions.push(colPos)
   // Check if all three columns finished spinning
   if (columnPositions.length === 3) {
+    console.log(columnPositions)
     // Check if columns are same
     if (columnPositions[0] === columnPositions[1] &&
         columnPositions[0] === columnPositions[2]) {
