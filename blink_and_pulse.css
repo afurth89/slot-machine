@@ -15,8 +15,8 @@
 }
 /* Pulse class and keyframe animation */
 .pulsing{
-  -webkit-animation: pulse linear .5s infinite;
-  animation: pulse linear .5s infinite;
+  -webkit-animation: pulse linear 1s infinite;
+  animation: pulse linear 1s infinite;
 }
 @-webkit-keyframes pulse {
   0% { width:130px; } 
