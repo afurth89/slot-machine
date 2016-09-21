@@ -60,6 +60,7 @@ body {
 
 #winner-img-container {
   height: 150px;
+  margin-bottom: -10px;
 }
 
 #reset-btn {
@@ -69,6 +70,7 @@ body {
   color: white;
   font-size: 16px;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  margin-top: 10px;
   padding: 3px;
   outline: none;
 }
