@@ -32,23 +32,23 @@ $( document ).ready(function() {
       // left to right
 
     // TODO - Add more spins and make it muchfaster to start
-    var colOneSpins = Math.floor(Math.random() * 6)  
+    var colOneSpins = Math.floor(Math.random() * 12)  
 
     // TODO - DRY code
     $('#col-one').css({
         top: 0
     }) 
-    spin($('#col-one'), colOneSpins, 500)
+    spin($('#col-one'), colOneSpins, 200)
 
     $('#col-two').css({
         top: 0
     }) 
-    spin($('#col-two'), colOneSpins+1, 600)
+    spin($('#col-two'), colOneSpins+1, 200)
 
     $('#col-three').css({
         top: 0
     }) 
-    spin($('#col-three'), colOneSpins+2, 700)
+    spin($('#col-three'), colOneSpins+2, 200)
   });
 
   // Reset Function

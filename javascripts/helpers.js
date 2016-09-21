@@ -30,13 +30,14 @@ function spin(column, count, duration) {
           top: 0
       }).animate({
           top: top
-      }, time, 'linear')
+      }, time, 'linear', function() {
+        // Trigger a function that count whether 
+        // all three columns have finished spinning
+        // Also, pass along the 'top' value to check for 
+        // winner
+        checkForWinner(top);
+      })
 
-      // Trigger a function that count whether 
-      // all three columns have finished spinning
-      // Also, pass along the 'top' value to check for 
-      // winner
-      checkForWinner(top);
 
     // If this is not the final spin, decrement count
     // and scroll through items again
