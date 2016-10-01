@@ -10,7 +10,7 @@ $( document ).ready(function() {
 
 
   // Predetermined results of the spin
-  var finalReelPositions = determineReelPositions();
+  var finalReelPositions = determineReelPositions(totalNumOfSlots);
 
   // Clone the first element; append to end of list
 
@@ -45,7 +45,7 @@ $( document ).ready(function() {
       // spin function must be passed through anonymous func
       // so it isn't immediately invoked
       setTimeout(function() {
-        spin(colWrapper, totalReelRotations, firstSpinDuration)
+        spin(colWrapper, totalReelRotations, firstSpinDuration, onePositionHeight, totalNumOfSlots)
       }, beginSpinDelay)
       beginSpinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
       totalReelRotations += 4;  // Add extra rotations to each reel, to ensure they finish left-center-right
@@ -63,7 +63,7 @@ $( document ).ready(function() {
 });
 
   // Creates an array of three integers, each 0-2, that will determine what position each reel finishes on
-  function determineReelPositions() {
+  function determineReelPositions(totalNumOfSlots) {
     // Create an array
     var finalPositionsArray = []
     // Iterate through a loop totalNumOfSlots times
@@ -84,22 +84,22 @@ $( document ).ready(function() {
 // Will go through given number of 'spins'
 // and on final spin will select a winning
 // element and end 'spin' animation there
-function spin(column, count, duration) {
+function spin(column, count, duration, onePositionHeight, numOfSlots) {
   column
   .stop()  // Reset, ensure previous animation stopped
   // 'spin' animation, scroll item list top to bottom
   .animate({
-      top: -fullReelHeight
+      top: -(onePositionHeight*numOfSlots)
   }, duration, 'linear', function () {
     // If final spin, determine ending element
     if (count == 0) {
       // Pick a 'winning' slot
-      var slot = Math.floor(Math.random() * totalNumOfSlots),
+      var slot = Math.floor(Math.random() * numOfSlots),
       // Set the height required for 'winning' slo
       top = slot * -onePositionHeight
       // Adjust time of animation to slot's distance
       // from top, so motion duration remains constant 
-      time =  duration * slot / totalNumOfSlots;
+      time =  duration * slot / numOfSlots;
       // Run final 'spin'
       $(this).css({
           top: 0
