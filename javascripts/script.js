@@ -1,8 +1,8 @@
 $( document ).ready(function() {
   
-  var totalNumOfSlots = 3;
-  var fullReelHeight = 750;
-  var onePositionHeight = fullReelHeight / totalNumOfSlots;
+  var numOfPositions = 3; // Number of positions (choices) in a reel
+  var reelHeight = 750; // px
+  var onePositionHeight = reelHeight / numOfPositions;
   var totalReelRotations = Math.floor(Math.random() * 6) + 5  // Minimum 5, max 10 spins for column one 
   var beginSpinDelay = 0;  // First reel will have no delay in beginning to spin
   var firstSpinDuration = 200;  // First spin
@@ -10,7 +10,7 @@ $( document ).ready(function() {
 
 
   // Predetermined results of the spin
-  var finalReelPositions = determineReelPositions(totalNumOfSlots);
+  var finalReelPositions = determineReelPositions(numOfPositions);
 
   // Clone the first element; append to end of list
 
@@ -45,8 +45,9 @@ $( document ).ready(function() {
       // spin function must be passed through anonymous func
       // so it isn't immediately invoked
       setTimeout(function() {
-        spin(colWrapper, totalReelRotations, firstSpinDuration, onePositionHeight, totalNumOfSlots)
+        spin(colWrapper, totalReelRotations, firstSpinDuration, onePositionHeight, numOfPositions)
       }, beginSpinDelay)
+
       beginSpinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
       totalReelRotations += 4;  // Add extra rotations to each reel, to ensure they finish left-center-right
     });
@@ -63,14 +64,14 @@ $( document ).ready(function() {
 });
 
   // Creates an array of three integers, each 0-2, that will determine what position each reel finishes on
-  function determineReelPositions(totalNumOfSlots) {
+  function determineReelPositions(numOfPositions) {
     // Create an array
     var finalPositionsArray = []
-    // Iterate through a loop totalNumOfSlots times
-    for (var i = 1; i <= totalNumOfSlots; i++) { 
+    // Iterate through a loop numOfPositions times
+    for (var i = 1; i <= numOfPositions; i++) { 
       // Get random integer from 0-2
       // Push that integer to the array
-      finalPositionsArray.push( Math.floor(Math.random() * totalNumOfSlots) )
+      finalPositionsArray.push( Math.floor(Math.random() * numOfPositions) )
     }
     return finalPositionsArray;
   }
@@ -122,48 +123,50 @@ function spin(column, count, duration, onePositionHeight, numOfSlots) {
         })
         // Decrement count, but increase spin duration
         // to create 'slowing' down effect
-        spin(column, count - 1, duration+50)
+        count--
+        duration+50
+        spin(column, count, duration, onePositionHeight, numOfSlots)
     };
   });
 }
 
 
-function checkForWinner(colPos) {
-  // Add the position of column to arr, to check for winner
-  columnPositions.push(colPos)
-  // Check if all three columns finished spinning
-  if (columnPositions.length === totalNumOfSlots) {
-    var firstVal = columnPositions[0]
-    // Check if columns are same
-    if (firstVal === columnPositions[1] &&
-        firstVal === columnPositions[2]) {
-      // Determine what the winning item is by checking
-      // the first value (we've already determined all vals
-      // in array are same)
-      if(firstVal === 0) {
-        showWinner("coffee")
-      } else if (firstVal === -250) {
-        showWinner("tea")
-      } else {
-        showWinner("espresso")
-      }
-    }
-    // Reset columnPositions
-    columnPositions = [];
-  }
-}
+// function checkForWinner(colPos) {
+//   // Add the position of column to arr, to check for winner
+//   columnPositions.push(colPos)
+//   // Check if all three columns finished spinning
+//   if (columnPositions.length === numOfPositions) {
+//     var firstVal = columnPositions[0]
+//     // Check if columns are same
+//     if (firstVal === columnPositions[1] &&
+//         firstVal === columnPositions[2]) {
+//       // Determine what the winning item is by checking
+//       // the first value (we've already determined all vals
+//       // in array are same)
+//       if(firstVal === 0) {
+//         showWinner("coffee")
+//       } else if (firstVal === -250) {
+//         showWinner("tea")
+//       } else {
+//         showWinner("espresso")
+//       }
+//     }
+//     // Reset columnPositions
+//     columnPositions = [];
+//   }
+// }
 
 
-function showWinner(bevName) {
-    // Update the src and alt attributes for img
-    $('#winner-img-container>img').attr({
-      src: './assets/cup_'+bevName+'.jpg',
-      alt: bevName
-    })
-    // Insert the winning bev (uppercased) into h2
-    $('#winning-bev-name').text(bevName.toUpperCase())
-    // Animate in winner wrapper
-    $('#winner-wrapper').animate({
-      left: 150
-    }, 1000, 'linear')
-  }
+// function showWinner(bevName) {
+//     // Update the src and alt attributes for img
+//     $('#winner-img-container>img').attr({
+//       src: './assets/cup_'+bevName+'.jpg',
+//       alt: bevName
+//     })
+//     // Insert the winning bev (uppercased) into h2
+//     $('#winning-bev-name').text(bevName.toUpperCase())
+//     // Animate in winner wrapper
+//     $('#winner-wrapper').animate({
+//       left: 150
+//     }, 1000, 'linear')
+//   }
