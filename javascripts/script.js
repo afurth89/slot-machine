@@ -1,20 +1,16 @@
 $( document ).ready(function() {
+  
+  var totalNumOfSlots = 3;
+  var fullReelHeight = 750;
+  var onePositionHeight = fullReelHeight / totalNumOfSlots;
+  var totalReelRotations = Math.floor(Math.random() * 6) + 5  // Minimum 5, max 10 spins for column one 
+  var beginSpinDelay = 0;  // First reel will have no delay in beginning to spin
+  var firstSpinDuration = 200;  // First spin
+  
 
-  function determineReelPositions() {
-    // Create an array
-    var finalPositionsArray = []
-    // Iterate through a loop 3 times
-    for (var i = 1; i <= 3; i++) { 
-      // Get random integer from 0-2
-      // Push that integer to the array
-      finalPositionsArray.push( Math.floor(Math.random() * 3) )
-    }
-    return finalPositionsArray;
-  }
 
-  // Store the results of each spin
+  // Predetermined results of the spin
   var finalReelPositions = determineReelPositions();
-  console.log(finalReelPositions)
 
   // Clone the first element; append to end of list
 
@@ -42,9 +38,6 @@ $( document ).ready(function() {
       // to mirror a normal slot machine where reels finish
       // left to right
 
-    // Minimum 5, max 10 spins for column one 
-    var colSpins = Math.floor(Math.random() * 6) + 5  
-    var colDelay = 0;
 
     // Start each column spinning
     colNames.forEach((el) => {
@@ -52,15 +45,11 @@ $( document ).ready(function() {
       // spin function must be passed through anonymous func
       // so it isn't immediately invoked
       setTimeout(function() {
-        spin(colWrapper, colSpins, 200)
-      }, colDelay)
-      // Increment setTimeout delay so columns start spinning
-      // in order (not simultaneously)
-      colDelay += 500;
-      // Increment colSpins so columns always finish left-center-right
-      colSpins += 4;
-    })
-
+        spin(colWrapper, totalReelRotations, firstSpinDuration)
+      }, beginSpinDelay)
+      beginSpinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
+      totalReelRotations += 4;  // Add extra rotations to each reel, to ensure they finish left-center-right
+    });
   });
 
   // Reset Function
@@ -73,7 +62,18 @@ $( document ).ready(function() {
 
 });
 
-
+  // Creates an array of three integers, each 0-2, that will determine what position each reel finishes on
+  function determineReelPositions() {
+    // Create an array
+    var finalPositionsArray = []
+    // Iterate through a loop totalNumOfSlots times
+    for (var i = 1; i <= totalNumOfSlots; i++) { 
+      // Get random integer from 0-2
+      // Push that integer to the array
+      finalPositionsArray.push( Math.floor(Math.random() * totalNumOfSlots) )
+    }
+    return finalPositionsArray;
+  }
 
 // Citation: http://jsfiddle.net/jakecigar/aMmhZ/12/
 // "Spinning" animation logic was based on this code
@@ -89,17 +89,17 @@ function spin(column, count, duration) {
   .stop()  // Reset, ensure previous animation stopped
   // 'spin' animation, scroll item list top to bottom
   .animate({
-      top: -750
+      top: -fullReelHeight
   }, duration, 'linear', function () {
     // If final spin, determine ending element
     if (count == 0) {
       // Pick a 'winning' slot
-      var slot = Math.floor(Math.random() * 3),
+      var slot = Math.floor(Math.random() * totalNumOfSlots),
       // Set the height required for 'winning' slo
-      top = slot * -250,
+      top = slot * -onePositionHeight
       // Adjust time of animation to slot's distance
       // from top, so motion duration remains constant 
-      time =  duration * slot / 3;
+      time =  duration * slot / totalNumOfSlots;
       // Run final 'spin'
       $(this).css({
           top: 0
@@ -132,7 +132,7 @@ function checkForWinner(colPos) {
   // Add the position of column to arr, to check for winner
   columnPositions.push(colPos)
   // Check if all three columns finished spinning
-  if (columnPositions.length === 3) {
+  if (columnPositions.length === totalNumOfSlots) {
     var firstVal = columnPositions[0]
     // Check if columns are same
     if (firstVal === columnPositions[1] &&
