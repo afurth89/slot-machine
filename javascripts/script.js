@@ -1,7 +1,21 @@
 $( document ).ready(function() {
+
+  function determineReelPositions() {
+    // Create an array
+    var finalPositionsArray = []
+    // Iterate through a loop 3 times
+    for (var i = 1; i <= 3; i++) { 
+      // Get random integer from 0-2
+      // Push that integer to the array
+      finalPositionsArray.push( Math.floor(Math.random() * 3) )
+    }
+    return finalPositionsArray;
+  }
+
   // Store the results of each spin
-  var columnPositions = [];
-  
+  var finalReelPositions = determineReelPositions();
+  console.log(finalReelPositions)
+
   // Clone the first element; append to end of list
 
   // Reason? --> As the final item is exiting the viewport
