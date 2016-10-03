@@ -6,6 +6,7 @@ $( document ).ready(function() {
   var totalReelRotations = Math.floor(Math.random() * 6) + 5  // Minimum 5, max 10 spins for column one 
   var beginSpinDelay = 0;  // First reel will have no delay in beginning to spin
   var firstSpinDuration = 200;  // First spin
+  var colNames = ['one', 'two', 'three']  // To run forEach func's on each column
   
 
 
@@ -23,7 +24,6 @@ $( document ).ready(function() {
   // resetting and the first <li> filling the frame.
   // However since the first and last item are identical
   // the 'jump' is imperceptible to the user
-  var colNames = ['one', 'two', 'three']
 
   colNames.forEach((el) => {
     var itemList = $('#col-'+el+'>ul:first')
@@ -87,11 +87,14 @@ $( document ).ready(function() {
 // element and end 'spin' animation there
 function spin(column, count, duration, onePositionHeight, numOfSlots) {
   column
-  .stop()  // Reset, ensure previous animation stopped
-  // 'spin' animation, scroll item list top to bottom
+  // Reset, ensure previous animation stopped
+  .stop()  
+  // 'spin' animation, changing the "top" property of the reel from 0 to the negative of it's height
+  // which animates the reel traveling upwards
   .animate({
       top: -(onePositionHeight*numOfSlots)
   }, duration, 'linear', function () {
+    
     // If final spin, determine ending element
     if (count == 0) {
       // Pick a 'winning' slot
@@ -118,14 +121,15 @@ function spin(column, count, duration, onePositionHeight, numOfSlots) {
     // If this is not the final spin, decrement count
     // and scroll through items again
     } else {
-        $(this).css({
-            top: 0
-        })
-        // Decrement count, but increase spin duration
-        // to create 'slowing' down effect
-        count--
-        duration+50
-        spin(column, count, duration, onePositionHeight, numOfSlots)
+      // Reset "top" position to create illusion of the reel being back at the first position
+      $(this).css({
+          top: 0
+      })
+      // Decrement count, but increase spin duration
+      // to create 'slowing' down effect on each successive "spin"
+      count--
+      duration+=50
+      spin(column, count, duration, onePositionHeight, numOfSlots)
     };
   });
 }
