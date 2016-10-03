@@ -40,12 +40,12 @@ $( document ).ready(function() {
 
 
     // Start each column spinning
-    colNames.forEach((el) => {
+    colNames.forEach((el, colIdx) => {
       var colWrapper = $('#col-'+el)
       // spin function must be passed through anonymous func
       // so it isn't immediately invoked
       setTimeout(function() {
-        spin(colWrapper, totalReelRotations, firstSpinDuration, onePositionHeight, numOfPositions)
+        spin(colWrapper, colIdx, totalReelRotations, firstSpinDuration, onePositionHeight, numOfPositions)
       }, beginSpinDelay)
 
       beginSpinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
@@ -85,25 +85,26 @@ $( document ).ready(function() {
 // Will go through given number of 'spins'
 // and on final spin will select a winning
 // element and end 'spin' animation there
-function spin(column, count, duration, onePositionHeight, numOfSlots) {
-  column
+function spin(columnElement, colIdx, spinsRemaining, spinDuration, onePositionHeight, numOfSlots) {
+  console.log("The column's index is, ", colIdx)
+  columnElement
   // Reset, ensure previous animation stopped
   .stop()  
   // 'spin' animation, changing the "top" property of the reel from 0 to the negative of it's height
   // which animates the reel traveling upwards
   .animate({
       top: -(onePositionHeight*numOfSlots)
-  }, duration, 'linear', function () {
+  }, spinDuration, 'linear', function () {
     
     // If final spin, determine ending element
-    if (count == 0) {
+    if (spinsRemaining == 0) {
       // Pick a 'winning' slot
       var slot = Math.floor(Math.random() * numOfSlots),
       // Set the height required for 'winning' slo
       top = slot * -onePositionHeight
       // Adjust time of animation to slot's distance
-      // from top, so motion duration remains constant 
-      time =  duration * slot / numOfSlots;
+      // from top, so motion spinDuration remains constant 
+      time =  spinDuration * slot / numOfSlots;
       // Run final 'spin'
       $(this).css({
           top: 0
@@ -118,18 +119,18 @@ function spin(column, count, duration, onePositionHeight, numOfSlots) {
       })
 
 
-    // If this is not the final spin, decrement count
+    // If this is not the final spin, decrement spinsRemaining
     // and scroll through items again
     } else {
       // Reset "top" position to create illusion of the reel being back at the first position
       $(this).css({
           top: 0
       })
-      // Decrement count, but increase spin duration
+      // Decrement spinsRemaining, but increase spin spinDuration
       // to create 'slowing' down effect on each successive "spin"
-      count--
-      duration+=50
-      spin(column, count, duration, onePositionHeight, numOfSlots)
+      spinsRemaining--
+      spinDuration+=50
+      spin(columnElement, colIdx, spinsRemaining, spinDuration, onePositionHeight, numOfSlots)
     };
   });
 }
