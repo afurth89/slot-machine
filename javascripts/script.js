@@ -3,17 +3,12 @@ $( document ).ready(function() {
   var numOfPositions = 3; // Number of positions (choices) in a reel
   var reelHeight = 750; // px
   var onePositionHeight = reelHeight / numOfPositions;
-  var totalReelRotations = Math.floor(Math.random() * 6) + 2 // Minimum 2, max 7 spins for column one 
-  var beginSpinDelay = 0;  // First reel will have no delay in beginning to spin
-  var firstSpinDuration = 200;  // First spin
   var colNames = ['one', 'two', 'three'];  // To run forEach func's on each column
-  var beverageArray = ["coffee", "tea", "espresso"];
-  
-
-
-  // Predetermined results of the spin
-  var finalReelPositions = determineReelPositions(numOfPositions);
-  console.log(finalReelPositions)
+  var beverageArray = ["coffee", "tea", "espresso"]; // For mapping winning bevs to finalReelPositions
+  var beginSpinDelay = 0;
+  var firstSpinDuration = 200;  // Default value for the duration of first "rotation"; increases on each spin to produce "slow-down" effect
+  var totalReelRotations;  // Dynamically determined each spin
+  var finalReelPositions;  // Dynamically determined each spin
 
   // Clone the first element; append to end of list
 
@@ -35,10 +30,13 @@ $( document ).ready(function() {
 
   // Start a spin
   $('#start-btn').click(function () {
-    // Set random spin values for colOne
-      // We'll increment that val for cols Two and Three
-      // to mirror a normal slot machine where reels finish
-      // left to right
+    // Determine final reel positions and number of reel rotations for this spin
+    finalReelPositions = determineReelPositions(numOfPositions);
+    console.log("Final reel positions for this spin are..., ", finalReelPositions)
+    totalReelRotations = Math.floor(Math.random() * 6) + 2 // Minimum 2, max 7 spins for column one 
+    // Reset delay and duration values
+    beginSpinDelay = 0;
+    firstSpinDuration = 200;
 
 
     // Start each column spinning
