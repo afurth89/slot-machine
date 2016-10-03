@@ -5,7 +5,8 @@ $( document ).ready(function() {
   var onePositionHeight = reelHeight / numOfPositions;
   var colNames = ['one', 'two', 'three'];  // To run forEach func's on each column
   var beverageArray = ["coffee", "tea", "espresso"]; // For mapping winning bevs to finalReelPositions
-  var beginSpinDelay = 0;
+  var reelsDoneSpinning; // Count of how many reels have finished spinning
+  var beginSpinDelay = 0;  // Timed delay to ensure stagged start to reels beginning to spin
   var firstSpinDuration = 200;  // Default value for the duration of first "rotation"; increases on each spin to produce "slow-down" effect
   var totalReelRotations;  // Dynamically determined each spin
   var finalReelPositions;  // Dynamically determined each spin
@@ -37,6 +38,7 @@ $( document ).ready(function() {
     // Reset delay and duration values
     beginSpinDelay = 0;
     firstSpinDuration = 200;
+    reelsDoneSpinning = 0;
 
 
     // Start each column spinning
@@ -113,7 +115,7 @@ $( document ).ready(function() {
           // Also, pass along the 'top' value to check for 
           // winner
           console.log("The winning item for this column is, ", beverageArray[winningPosition])
-          // checkForWinner(winningPositionHeight);
+          checkForWinner();
         })
 
 
@@ -133,46 +135,36 @@ $( document ).ready(function() {
     });
   }
 
+  function checkForWinner() {
+    // Increment doneSpinning count
+    reelsDoneSpinning++ 
+    // Check if all three columns finished spinning
+    if (reelsDoneSpinning === 3) {
+      // Check if same beverage appeared all three times
+      if (finalReelPositions[0] === finalReelPositions[1] &&
+          finalReelPositions[0] === finalReelPositions[2]) {
+
+        // Show winning beverage, using the winning index (from finalReelPositions array)
+        showWinner(beverageArray[finalReelPositions[0]])
+      }
+    }
+  }
+
+  function showWinner(bevName) {
+    // Update the src and alt attributes for img
+    $('#winner-img-container>img').attr({
+      src: './assets/cup_'+bevName+'.jpg',
+      alt: bevName
+    })
+    // Insert the winning bev (uppercased) into h2
+    $('#winning-bev-name').text(bevName.toUpperCase())
+    // Animate in winner wrapper
+    $('#winner-wrapper').animate({
+      left: 150
+    }, 1000, 'linear')
+  }
 });
 
 
 
-// function checkForWinner(colPos) {
-//   // Add the position of column to arr, to check for winner
-//   columnPositions.push(colPos)
-//   // Check if all three columns finished spinning
-//   if (columnPositions.length === numOfPositions) {
-//     var firstVal = columnPositions[0]
-//     // Check if columns are same
-//     if (firstVal === columnPositions[1] &&
-//         firstVal === columnPositions[2]) {
-//       // Determine what the winning item is by checking
-//       // the first value (we've already determined all vals
-//       // in array are same)
-//       if(firstVal === 0) {
-//         showWinner("coffee")
-//       } else if (firstVal === -250) {
-//         showWinner("tea")
-//       } else {
-//         showWinner("espresso")
-//       }
-//     }
-//     // Reset columnPositions
-//     columnPositions = [];
-//   }
-// }
 
-
-// function showWinner(bevName) {
-//     // Update the src and alt attributes for img
-//     $('#winner-img-container>img').attr({
-//       src: './assets/cup_'+bevName+'.jpg',
-//       alt: bevName
-//     })
-//     // Insert the winning bev (uppercased) into h2
-//     $('#winning-bev-name').text(bevName.toUpperCase())
-//     // Animate in winner wrapper
-//     $('#winner-wrapper').animate({
-//       left: 150
-//     }, 1000, 'linear')
-//   }
