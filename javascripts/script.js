@@ -11,22 +11,20 @@ $( document ).ready(function() {
   var totalReelRotations;  // Dynamically determined each spin
   var finalReelPositions;  // Dynamically determined each spin
 
+
+
   // Clone the first element; append to end of list
 
-  // Reason? --> As the final item is exiting the viewport
-  // the next item (which is realy the first item), must
-  // 'appear' to be entering the frame.
-
+  // Reason? --> 
   // Under the hood, there is a jump between the last
-  // <li> entering the frame, and then the entire list
+  // <li> exiting the frame, and then the entire list
   // resetting and the first <li> filling the frame.
   // However since the first and last item are identical
   // the 'jump' is imperceptible to the user
-
   colNames.forEach((el) => {
-    var itemList = $('#col-'+el+'>ul:first')
-    var firstItem = itemList.find('li:first')
-    firstItem.clone().appendTo(itemList)
+    var listOfReelPositions = $('#col-'+el+'>ul:first')
+    var firstReelPosition = listOfReelPositions.find('li:first')
+    firstReelPosition.clone().appendTo(listOfReelPositions)
   })
 
   // Start a spin
@@ -69,7 +67,7 @@ $( document ).ready(function() {
     var finalPositionsArray = []
     // Iterate through a loop numOfPositions times
     for (var i = 1; i <= numOfPositions; i++) { 
-      // Get random integer from 0-2
+      // Get random integer from 0 to numPositions minus 1
       // Push that integer to the array
       finalPositionsArray.push( Math.floor(Math.random() * numOfPositions) )
     }
