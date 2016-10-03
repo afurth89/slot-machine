@@ -3,7 +3,7 @@ $( document ).ready(function() {
   var numOfPositions = 3; // Number of positions (choices) in a reel
   var reelHeight = 750; // px
   var onePositionHeight = reelHeight / numOfPositions;
-  var totalReelRotations = Math.floor(Math.random() * 6) + 5  // Minimum 5, max 10 spins for column one 
+  var totalReelRotations = Math.floor(Math.random() * 6) + 2 // Minimum 2, max 7 spins for column one 
   var beginSpinDelay = 0;  // First reel will have no delay in beginning to spin
   var firstSpinDuration = 200;  // First spin
   var colNames = ['one', 'two', 'three']  // To run forEach func's on each column
@@ -49,7 +49,7 @@ $( document ).ready(function() {
       }, beginSpinDelay)
 
       beginSpinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
-      totalReelRotations += 4;  // Add extra rotations to each reel, to ensure they finish left-center-right
+      totalReelRotations += 2;  // Add 2 extra rotations to each reel, to ensure they finish left-center-right
     });
   });
 
