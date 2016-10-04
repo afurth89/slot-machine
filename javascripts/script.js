@@ -131,9 +131,6 @@ $( document ).ready(function() {
         }, winningPositionSpinDuration, 'linear', function() {
           // Trigger a function that count whether 
           // all three columns have finished spinning
-          // Also, pass along the 'top' value to check for 
-          // winner
-          console.log("The winning item for this column is, ", beverageArray[winningPosition])
           checkForWinner();
         })
 
