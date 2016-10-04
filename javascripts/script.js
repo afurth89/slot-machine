@@ -2,18 +2,18 @@ $( document ).ready(function() {
   
   var numOfPositions = 3; // Number of positions (choices) in a reel
   var reelHeight = 750; // px
-  var onePositionHeight = reelHeight / numOfPositions;
-  var colNames = ['one', 'two', 'three'];  // To run forEach func's on each column
+  var onePositionHeight = reelHeight / numOfPositions;  // Height (px) of each reel position <li> element
+  var colNames = ['one', 'two', 'three'];  // To capture column elements to clone first element in each column
   var beverageArray = ["coffee", "tea", "espresso"]; // For mapping winning bevs to finalReelPositions
   var reelsDoneSpinning; // Count of how many reels have finished spinning
-  var beginSpinDelay = 0;  // Timed delay to ensure stagged start to reels beginning to spin
+  var beginSpinDelay = 0;  // Timed delay before starting spinning of next reel, to ensure staggered start for each reel
   var firstSpinDuration = 200;  // Default value for the duration of first "rotation"; increases on each spin to produce "slow-down" effect
-  var totalReelRotations;  // Dynamically determined each spin
+  var totalReelRotations = 4;  // Col 1 will spin 4 times, Col 2 will spin 6 and col 3 will spin 8
   var finalReelPositions;  // Dynamically determined each spin
 
 
 
-  // Clone the first element; append to end of list
+  // On DOM load, clone the first element; append to end of list
 
   // Reason? --> 
   // Under the hood, there is a jump between the last
@@ -27,30 +27,14 @@ $( document ).ready(function() {
     firstReelPosition.clone().appendTo(listOfReelPositions)
   })
 
-  // Start a spin
+  //***************************************************************************
+  // CLICK EVENTS
+  //***************************************************************************
+
+  // Click 'spin' button
   $('#start-btn').click(function () {
-    // Determine final reel positions and number of reel rotations for this spin
-    finalReelPositions = determineReelPositions(numOfPositions);
-    console.log("Final reel positions for this spin are..., ", finalReelPositions)
-    totalReelRotations = Math.floor(Math.random() * 6) + 2 // Minimum 2, max 7 spins for column one 
-    // Reset delay and duration values
-    beginSpinDelay = 0;
-    firstSpinDuration = 200;
-    reelsDoneSpinning = 0;
-
-
-    // Start each column spinning
-    colNames.forEach((el, colIdx) => {
-      var colWrapper = $('#col-'+el)
-      // spin function must be passed through anonymous func
-      // so it isn't immediately invoked
-      setTimeout(function() {
-        spin(colWrapper, colIdx, totalReelRotations, firstSpinDuration, onePositionHeight, numOfPositions)
-      }, beginSpinDelay)
-
-      beginSpinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
-      totalReelRotations += 2;  // Add 2 extra rotations to each reel, to ensure they finish left-center-right
-    });
+    prepSlotMachine();  // Resets key variables, and determines new final positions for each reel
+    startSlotMachine(); // Initiates setTimeout functions for each reel that will begin their spinning
   });
 
   // Reset Function
@@ -60,6 +44,11 @@ $( document ).ready(function() {
       left: -2000
     }, 1000, 'linear')
   })
+
+
+  //***************************************************************************
+  // HELPER FUNCTIONS
+  //***************************************************************************
 
   // Creates an array of three integers, each 0-2, that will determine what position each reel finishes on
   function determineReelPositions(numOfPositions) {
@@ -72,6 +61,34 @@ $( document ).ready(function() {
       finalPositionsArray.push( Math.floor(Math.random() * numOfPositions) )
     }
     return finalPositionsArray;
+  }
+
+  // Resets key variables, and determines new final positions for each reel, to create a 'new spin'
+  function prepSlotMachine() {
+    // Reset key variables
+    beginSpinDelay = 0;
+    firstSpinDuration = 200;
+    reelsDoneSpinning = 0;
+    totalReelRotations = 4; 
+
+    finalReelPositions = determineReelPositions(numOfPositions);  // Choose new winning positions for upcoming spin
+  }
+
+  // Begins the spinning process
+  function startSlotMachine() {
+    // Start each column spinning
+    colNames.forEach((el, colIdx) => {
+      // Capture each column using jQuery
+      var colWrapper = $('#col-'+el)
+      // spin function must be passed through anonymous func
+      // so it isn't immediately invoked
+      setTimeout(function() {
+        spin(colWrapper, colIdx, totalReelRotations, firstSpinDuration, onePositionHeight, numOfPositions)
+      }, beginSpinDelay)
+
+      beginSpinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
+      totalReelRotations += 2;  // Add 2 extra rotations to each reel, to ensure they finish left-center-right
+    });
   }
 
   // Citation: http://jsfiddle.net/jakecigar/aMmhZ/12/
@@ -127,7 +144,7 @@ $( document ).ready(function() {
         // Decrement spinsRemaining, but increase spin spinDuration
         // to create 'slowing' down effect on each successive "spin"
         spinsRemaining--
-        spinDuration+=50
+        spinDuration += 50
         spin(columnElement, colIdx, spinsRemaining, spinDuration, onePositionHeight, numOfSlots)
       };
     });
