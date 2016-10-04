@@ -3,12 +3,16 @@ $( document ).ready(function() {
   var numOfPositions = 3; // Number of positions (choices) in a reel
   var reelHeight = 750; // px
   var onePositionHeight = reelHeight / numOfPositions;  // Height (px) of each reel position <li> element
+  var initialReelTopPosition = 0;  // 'top' attribute value for a reel on start (where first element is visible)
   var colNames = ['one', 'two', 'three'];  // To capture column elements to clone first element in each column
   var beverageArray = ["coffee", "tea", "espresso"]; // For mapping winning bevs to finalReelPositions
-  var reelsDoneSpinning; // Count of how many reels have finished spinning
-  var beginSpinDelay = 0;  // Timed delay before starting spinning of next reel, to ensure staggered start for each reel
+  var winnerModalHidden = -2000; // px, 'left' position to keep winner modal hidden until winning spin
+  var winnerModalVisible = 150; // px, 'left' position of winner modal when visible on winning spin
+  var winnerModalAnimationDuration = 1000;  // milliseconds, sliding it in or out of frame
+  var reelsDoneSpinning = 0; // Count of how many reels have finished spinning
+  var spinDelay = 0;  // Timed delay before starting spinning of next reel, to ensure staggered start for each reel
   var firstSpinDuration = 200;  // Default value for the duration of first "rotation"; increases on each spin to produce "slow-down" effect
-  var totalReelRotations = 4;  // Col 1 will spin 4 times, Col 2 will spin 6 and col 3 will spin 8
+  var reelRotations = 4;  // Col 1 will spin 4 times, Col 2 will spin 6 and col 3 will spin 8
   var finalReelPositions;  // Dynamically determined each spin
 
 
@@ -41,8 +45,8 @@ $( document ).ready(function() {
   $('#reset-btn').click(function() {
     // Animate out winner wrapper
     $('#winner-wrapper').animate({
-      left: -2000
-    }, 1000, 'linear')
+      left: winnerModalHidden
+    }, winnerModalAnimationDuration, 'linear')
   })
 
 
@@ -66,10 +70,10 @@ $( document ).ready(function() {
   // Resets key variables, and determines new final positions for each reel, to create a 'new spin'
   function prepSlotMachine() {
     // Reset key variables
-    beginSpinDelay = 0;
+    spinDelay = 0;
     firstSpinDuration = 200;
     reelsDoneSpinning = 0;
-    totalReelRotations = 4; 
+    reelRotations = 4; 
 
     finalReelPositions = determineReelPositions(numOfPositions);  // Choose new winning positions for upcoming spin
   }
@@ -83,11 +87,11 @@ $( document ).ready(function() {
       // spin function must be passed through anonymous func
       // so it isn't immediately invoked
       setTimeout(function() {
-        spin(colWrapper, colIdx, totalReelRotations, firstSpinDuration, onePositionHeight, numOfPositions)
-      }, beginSpinDelay)
+        spin(colWrapper, colIdx, reelRotations, firstSpinDuration, onePositionHeight, numOfPositions)
+      }, spinDelay)
 
-      beginSpinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
-      totalReelRotations += 2;  // Add 2 extra rotations to each reel, to ensure they finish left-center-right
+      spinDelay += 500  // Each successive reel will wait another 500ms before beginning, creating staggered start of reels
+      reelRotations += 2;  // Add 2 extra rotations to each reel, to ensure they finish left-center-right
     });
   }
 
@@ -121,7 +125,7 @@ $( document ).ready(function() {
         winningPositionSpinDuration =  spinDuration * winningPosition / numOfSlots;
         // Run final 'spin'
         $(this).css({
-            top: 0
+            top: initialReelTopPosition
         }).animate({
             top: winningPositionHeight
         }, winningPositionSpinDuration, 'linear', function() {
@@ -139,7 +143,7 @@ $( document ).ready(function() {
       } else {
         // Reset "top" position to create illusion of the reel being back at the first position
         $(this).css({
-            top: 0
+            top: initialReelTopPosition
         })
         // Decrement spinsRemaining, but increase spin spinDuration
         // to create 'slowing' down effect on each successive "spin"
@@ -175,8 +179,8 @@ $( document ).ready(function() {
     $('#winning-bev-name').text(bevName.toUpperCase())
     // Animate in winner wrapper
     $('#winner-wrapper').animate({
-      left: 150
-    }, 1000, 'linear')
+      left: winnerModalVisible
+    }, winnerModalAnimationDuration, 'linear')
   }
 });
 
