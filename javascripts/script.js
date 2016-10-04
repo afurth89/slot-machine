@@ -41,8 +41,8 @@ $( document ).ready(function() {
     startSlotMachine(); // Initiates setTimeout functions for each reel that will begin their spinning
   });
 
-  // Reset Function
-  $('#reset-btn').click(function() {
+  // Hide Winner Modal after winning spin 
+  $('#hide-winner-modal-btn').click(function() {
     // Animate out winner wrapper
     $('#winner-wrapper').animate({
       left: winnerModalHidden
