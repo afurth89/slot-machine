@@ -63,7 +63,7 @@ body {
   margin-bottom: -10px;
 }
 
-#reset-btn {
+#hide-winner-modal-btn {
   border-radius: 5px;
   background-color: rgb(255,0,0);
   font-family: 'Gravitas One', cursive;
@@ -75,7 +75,7 @@ body {
   outline: none;
 }
 
-#reset-btn:hover {
+#hide-winner-modal-btn:hover {
   background-color: rgb(139,0,0);
   color: rgb(220,220,220);
 }
